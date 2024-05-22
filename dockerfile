@@ -14,8 +14,11 @@ COPY ./app /app
 WORKDIR /app 
 # this is to expose the port 8000 of the container to the host machine. This is the port where the django server will run.
 EXPOSE 8000 
-# this is to create a virtual environment in the image.
+# this is to set the DEV environment variable to false. This variable is used to install the development dependencies.
 ARG DEV=false   
+# this is to create a virtual environment in the image.
+RUN pip install flake8 && \
+    flake8 --ignore=E501,F401 .
 RUN python -m venv /py && \ 
 # this is to upgrade the pip package to the latest version.
     /py/bin/pip install --upgrade pip && \
