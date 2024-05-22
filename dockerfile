@@ -31,8 +31,9 @@ RUN python -m venv /py && \
         --disabled-password \
         --no-create-home \
         django-user
-
+# this is to set the user to the django-user that we created in the previous step.
+# this is to set the path of the virtual environment to the PATH environment variable.
 ENV PATH="/py/bin:$PATH"
-
+# this is to set the user to the django-user that we created in the previous step.
 USER django-user
 

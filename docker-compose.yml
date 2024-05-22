@@ -1,14 +1,22 @@
+# Define the version of the Docker Compose file format
 version: "3.9"
-
+# Define the services/containers to be run
 services: 
   app:
+  # Build the image from the Dockerfile
     build:
+    # The context is the path to the directory containing the Dockerfile
       context: .
+      # args is a list of build arguments
       args:
+        # Set the environment variable DEV to true
         - DEV=true
+    # ports is a list of ports to expose from the container
     ports:
       - "8000:8000"
+    # volumes is a list of volumes to mount in the container
     volumes:
       - ./app:/app
+    # command is the command to run when the container starts
     command: >
       sh -c "python manage.py runserver 0.0.0.0:8000"
